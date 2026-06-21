@@ -23,10 +23,17 @@ export const createUser: RequestHandler = async (req, res, next) => {
     const newUser = await db.user.create({
       data: {
         name, email, passwordHash
+      },
+      select: {
+        id: true, 
+        name: true, 
+        email: true, 
+        isAdmin: true, 
+        createdAt: true
       }
     });
 
-    res.json(newUser);
+    res.status(201).json({ success: true, newUser });
   } catch (e: unknown) {
     next(e);
   }
