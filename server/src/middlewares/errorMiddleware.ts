@@ -35,10 +35,10 @@ const errorHandler = (
     }
   }
 
-  console.error('Unexpected Error:', error.name);
+  console.error('Unexpected Error:', error.message);
   res.status(500).json({
     success: false,
-    message: 'Internal Server Error'
+    message: error.message
   });
 };
 
